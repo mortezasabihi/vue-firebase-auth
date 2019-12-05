@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+      <b-navbar-brand to="/">NavBar</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -17,8 +17,8 @@
             <template v-slot:button-content>
               <em>User</em>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'login' }">Login</b-dropdown-item>
+            <b-dropdown-item href="#">Sign up</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
