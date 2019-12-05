@@ -1,5 +1,17 @@
 export default [
   {
+    path: "*",
+    redirect: "/login"
+  },
+  {
+    name: "home",
+    path: "/",
+    component: () => import(/* webpackChunkName: "home" */ "@/views/home"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     name: "login",
     path: "/login",
     component: () =>
