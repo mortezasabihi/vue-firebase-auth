@@ -1,7 +1,7 @@
 <template>
   <b-col lg="6">
     <b-card title="login" class="mt-5">
-      <b-form>
+      <b-form @submit.prevent="login">
         <b-form-group
           id="email-input-group"
           label="Email address:"
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "login",
   data() {
@@ -47,6 +49,15 @@ export default {
         password: ""
       }
     };
+  },
+  methods: {
+    login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.form.email, this.form.password)
+        .then(() => this.$router.push("/"))
+        .catch(errors => console.log(errors));
+    }
   }
 };
 </script>
