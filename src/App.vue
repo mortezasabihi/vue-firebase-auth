@@ -11,11 +11,19 @@
 </template>
 
 <script>
+import firebase from "firebase";
 import Navigation from "@/components/layout/Navigation";
 
 export default {
   components: {
     Navigation
+  },
+  created() {
+    firebase
+      .auth()
+      .onAuthStateChanged(user =>
+        this.$store.commit("setLoginStatus", user !== null)
+      );
   }
 };
 </script>

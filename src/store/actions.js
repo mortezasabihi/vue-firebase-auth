@@ -1,6 +1,6 @@
 import firebase from "firebase";
 import router from "@/router";
-import { setUser } from "@/services/jwt.service";
+import { setUser, destroyUser } from "@/services/jwt.service";
 
 export default {
   register({ commit }, payload) {
@@ -13,9 +13,16 @@ export default {
         setUser(response.user);
         setTimeout(() => router.push("/"), 2000);
       })
-      .catch(error => {
-        commit("setError", error);
-      })
+      .catch(error => commit("setErrors", error))
       .finally(() => commit("setLoading", false));
+  },
+
+  logout() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => router.push("/login"));
+
+    destroyUser();
   }
 };
