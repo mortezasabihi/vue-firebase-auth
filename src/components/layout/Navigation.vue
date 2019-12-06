@@ -6,6 +6,10 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav v-if="isLoggedIn">
+          <b-nav-item disabled>{{ getUser.email }}</b-nav-item>
+        </b-navbar-nav>
+
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right v-if="!isLoggedIn">
             <!-- Using 'button-content' slot -->
@@ -29,6 +33,7 @@
 
 <script>
 import firebase from "firebase";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Navigation",
@@ -44,6 +49,9 @@ export default {
     return {
       isLoggedIn: false
     };
+  },
+  computed: {
+    ...mapGetters(["getUser"])
   },
   created() {
     firebase

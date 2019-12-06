@@ -11,10 +11,11 @@
           <b-form-input
             id="email-input"
             v-model="form.email"
-            type="email"
-            required
+            type="text"
             placeholder="Enter email"
           ></b-form-input>
+
+          <validation :error="this.getErrors" error-key="email" />
         </b-form-group>
 
         <b-form-group
@@ -26,19 +27,24 @@
             id="password-input"
             v-model="form.password"
             type="password"
-            required
             placeholder="Enter password"
           ></b-form-input>
+
+          <validation :error="this.getErrors" error-key="password" />
         </b-form-group>
 
-        <b-button type="submit" variant="success">Sign Up</b-button>
+        <loading-button
+          variant="success"
+          :loading="this.getLoading"
+          text="Sign Up"
+        />
       </b-form>
     </b-card>
   </b-col>
 </template>
 
 <script>
-import firebase from "firebase";
+import { mapGetters } from "vuex";
 
 export default {
   name: "login",
@@ -50,13 +56,12 @@ export default {
       }
     };
   },
+  computed: {
+    ...mapGetters(["getErrors", "getLoading"])
+  },
   methods: {
     register() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.form.email, this.form.password)
-        .then(() => this.$router.push("/"))
-        .catch(errors => console.log(errors));
+      this.$store.dispatch("register", this.form);
     }
   }
 };
