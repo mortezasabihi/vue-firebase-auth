@@ -11,7 +11,21 @@ export default {
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then(response => {
         setUser(response.user);
-        setTimeout(() => router.push("/"), 2000);
+        router.push("/");
+      })
+      .catch(error => commit("setErrors", error))
+      .finally(() => commit("setLoading", false));
+  },
+
+  login({ commit }, payload) {
+    commit("setLoading", true);
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(payload.email, payload.password)
+      .then(response => {
+        setUser(response.user);
+        router.push("/");
       })
       .catch(error => commit("setErrors", error))
       .finally(() => commit("setLoading", false));

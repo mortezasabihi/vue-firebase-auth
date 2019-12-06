@@ -15,6 +15,8 @@
             required
             placeholder="Enter email"
           ></b-form-input>
+
+          <validation :error="this.getErrors" error-key="email" />
         </b-form-group>
 
         <b-form-group
@@ -29,16 +31,22 @@
             required
             placeholder="Enter password"
           ></b-form-input>
+
+          <validation :error="this.getErrors" error-key="password" />
         </b-form-group>
 
-        <b-button type="submit" variant="primary">Login</b-button>
+        <loading-button
+          variant="primary"
+          :loading="this.getLoading"
+          text="Login"
+        />
       </b-form>
     </b-card>
   </b-col>
 </template>
 
 <script>
-import firebase from "firebase";
+import { mapGetters } from "vuex";
 
 export default {
   name: "login",
@@ -50,13 +58,12 @@ export default {
       }
     };
   },
+  computed: {
+    ...mapGetters(["getLoading", "getErrors"])
+  },
   methods: {
     login() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.form.email, this.form.password)
-        .then(() => this.$router.push("/"))
-        .catch(errors => console.log(errors));
+      this.$store.dispatch("login", this.form);
     }
   }
 };

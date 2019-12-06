@@ -12,7 +12,6 @@
 
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right v-if="!this.getLoginStatus">
-            <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
               <em>User</em>
             </template>

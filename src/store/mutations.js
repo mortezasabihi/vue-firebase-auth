@@ -11,6 +11,9 @@ export default {
   setLoading(state, payload) {
     state.loading = payload;
   },
+  setErrors(state, payload) {
+    state.errors = payload;
+  },
   clearErrors(state) {
     state.errors = "";
   }
