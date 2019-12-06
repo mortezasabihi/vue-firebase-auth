@@ -1,6 +1,18 @@
-# vue-firebase-auth
+# Vue firebase auth
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 
 ## Project setup
+##### Pull project 
+```
+git pull git@github.com:mortezasabihi/vue-firebase-auth.git
+```
+#### Configure .env
+```
+rename .env-example to .env 
+match variables to your firebase configuration 
+```
+##### Install
 ```
 npm install
 ```
@@ -20,5 +32,16 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Dependencies
+- [vuex](https://vuex.vuejs.org/)
+- [vue-router](https://router.vuejs.org/)
+- [bootstrap-vue](https://bootstrap-vue.js.org/)
+- [firebase](https://firebase.google.com/)
+
+## Author
+- [Morteza Sabihi](https://github.com/mortezasabihi)
+
+[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/mortezasabihi/)
+
+## License
+This project is open source and available under the [MIT License](https://github.com/mortezasabihi/vue-firebase-auth/blob/master/LICENSE).
